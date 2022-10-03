@@ -18,7 +18,7 @@ function Main () {
 
             <Techs />
 
-            {/*<AboutMe />*/}
+            <AboutMe />
 
             {/*<Portfolio />*/}
 
