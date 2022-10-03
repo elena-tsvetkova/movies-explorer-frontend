@@ -16,7 +16,7 @@ function Main () {
 
             <AboutProject />
 
-            {/*<Techs />*/}
+            <Techs />
 
             {/*<AboutMe />*/}
 
