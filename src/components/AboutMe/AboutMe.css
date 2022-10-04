@@ -34,6 +34,7 @@
     .aboutMe__status {
         font-size: 17px;
         line-height: 22px;
+        margin-bottom: 25px;
     }
 }
 
@@ -45,7 +46,7 @@
 .aboutMe__content{
     margin-top: 66px;
     display: flex;
-    gap: 270px;
+    gap: 75px;
     justify-content: space-between;
 }
 
@@ -60,6 +61,7 @@
         flex-direction: column-reverse;
         align-items: flex-start;
         gap: 40px;
+        margin-top: 60px;
     }
 }
 
@@ -103,7 +105,7 @@
     .aboutMe__profession {
         font-size: 11px;
         line-height: 16px;
-        margin: 16px 0;
+        margin: 24px 0;
     }
 }
 

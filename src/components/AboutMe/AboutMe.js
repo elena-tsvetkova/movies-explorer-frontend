@@ -2,6 +2,7 @@
 import React from 'react';
 import './AboutMe.css';
 import Elena from '../../images/Elena.jpg';
+import Portfolio from "../Portfolio/Portfolio";
 
 function AboutMe () {
     return (
@@ -24,6 +25,7 @@ function AboutMe () {
 
             </div>
 
+            <Portfolio />
         </section>
     )
 }
