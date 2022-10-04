@@ -9,7 +9,7 @@ function Portfolio() {
             <nav>
                 <ul className='portfolio__links'>
                     <li className = 'portfolio__link'>
-                        <a href='#' target='blank' className='portfolio__link-website'>
+                        <a href='https://elena-tsvetkova.github.io/how-to-learn/' target='blank' className='portfolio__link-website'>
                             <h2 className='portfolio__link-subtitle'>Статичный сайт</h2>
                             <img className='portfolio__link-arrow' src={arrow} alt='стрелка'/>
                          </a>
