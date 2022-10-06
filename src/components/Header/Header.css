@@ -30,6 +30,7 @@ color: white;
 }
 
 .header-home__link {
+    cursor: pointer;
     width: 84px;
     height: 16px;
     font-size: 12px;

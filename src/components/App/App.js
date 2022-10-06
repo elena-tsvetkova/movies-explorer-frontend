@@ -2,8 +2,9 @@ import React from 'react';
 import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
 import './App.css';
 import Main from '../Main/Main.js';
-// import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+
 
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
                             </div>
                         </Header>
                         <Main />
-
+                        <Footer />
                     </Route>
 
 
