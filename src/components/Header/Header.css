@@ -77,3 +77,28 @@ color: white;
         font-size: 10px;
     }
 }
+
+.header__burger {
+    background-image: url('../../images/burger.svg');
+    width: 44px;
+    height: 44px;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+/*.header__profile-burger:hover {*/
+/*    background-image: url('../../images/burger-activ.svg');*/
+/*}*/
+
+@media screen and (min-width: 769px) {
+    .header__burger {
+        display: none;
+    }
+}
+@media screen and (max-width: 540px) {
+    .header__burger {
+        width: 40px;
+        height: 43px;
+    }
+}
