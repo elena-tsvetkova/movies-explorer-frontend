@@ -1,0 +1,114 @@
+.information__form {
+    width: 396px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media screen and (max-width: 540px) {
+    .information__form {
+        width: 260px;
+    }
+}
+
+.information__form-label {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #A0A0A0;
+}
+
+.information__form-input {
+    height: 46px;
+    background: #F9F9F9;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-size: 13px;
+    line-height: 16px;
+}
+
+.information__form-input:focus {
+    background: #F9F9F9;
+}
+
+.information__form-input-error {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #EE3465;
+}
+
+
+.information__button {
+    width: 396px;
+    height: 45px;
+    background: #2BE080;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 82px;
+}
+
+@media screen and (max-width: 768px) {
+    .information__button {
+        margin-top: 69px;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .information__button {
+        margin-top: 157px;
+        width: 260px;
+        font-size: 12px;
+        line-height: 15px;
+    }
+}
+
+.information__button:hover {
+    opacity: 0.8;
+}
+
+.information__text {
+    margin: 16px auto;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #A0A0A0;
+}
+
+@media screen and (max-width: 540px) {
+    .information__text {
+        margin: 14px auto;
+        font-size: 12px;
+        line-height: 15px;
+    }
+}
+
+.information__link {
+    margin-left: 6px;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #2BE080;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 540px) {
+    .information__link {
+        font-size: 12px;
+        line-height: 15px;
+    }
+}
+
+.information__link:hover {
+    opacity: 0.7;
+}

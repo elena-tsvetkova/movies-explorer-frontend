@@ -78,9 +78,9 @@ function App() {
                         <Profile/>
                     </Route>
 
-                    {/*<Route path='/signin'>*/}
-                    {/*    <Login/>*/}
-                    {/*</Route>*/}
+                    <Route path='/signin'>
+                        <Login/>
+                    </Route>
 
                     {/*<Route exact={true} path='*'>*/}
                     {/*    <NotFound/>*/}
