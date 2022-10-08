@@ -19,7 +19,7 @@ function Login () {
                 <span className='information__form-input-error'>Что-то пошло не так...</span>
 
 
-                <label className = 'information__form-abel' id='password'> Пароль </label>
+                <label className = 'information__form-label' id='password'> Пароль </label>
                 <input className='information__form-input' type='password' required name = 'password' id='password' minLength='4'/>
                 <span className='information__form-input-error'>Что-то пошло не так...</span>
 

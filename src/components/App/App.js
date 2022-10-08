@@ -10,6 +10,7 @@ import Profile from '../Profile/Profile.js';
 import Register from '../Register/Register.js';
 import Login from '../Login/Login.js';
 import Navigation from "../Navigation/Navigation";
+import Error from "../error/error.js";
 
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
                     <Route exact={true} path='/'>
                         <Header className=" header header-home">
                             <div className="header-home__navigation">
-                                <a className='header-home__link'>Регистрация</a>
+                                <a className='header-home__link' onClick={() => history.push('./signup')}>Регистрация</a>
                                 <button className="header-home__button" onClick={() => history.push('./signin')}
                                         type='button'>Войти
                                 </button>
@@ -82,9 +83,9 @@ function App() {
                         <Login/>
                     </Route>
 
-                    {/*<Route exact={true} path='*'>*/}
-                    {/*    <NotFound/>*/}
-                    {/*</Route>*/}
+                    <Route exact={true} path='#'>
+                        <Error/>
+                    </Route>
 
                 </Switch>
 
