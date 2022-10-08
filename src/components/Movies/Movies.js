@@ -14,7 +14,7 @@ function Movies () {
 
             <Preloader />
 
-            {/*<MoviesCardList className={'moviesCard__button'}/>*/}
+            <MoviesCardList className={'moviesCard__button'}/>
 
             {/*<section className='movies__moreMovies'>*/}
             {/*    <button className='movies__moreMovies-button' type='button'>Ещё</button>*/}
