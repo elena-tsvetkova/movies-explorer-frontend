@@ -47,6 +47,19 @@ function App() {
 
                             <Footer/>
                         </Route>
+                          <Route exact={true} path = '/saved_movies'>
+
+                        <Header className='header'>
+                            <Navigation
+                                isOpen = {isNavigationOpen}
+                                onClose = {onClose}/>
+                                <button className='header__burger' onClick = {()=>setIsNavigationOpen(true)} type='button'/>
+                            </Header>
+
+                        <SavedMovies />
+
+                         <Footer />
+                    </Route>
 
                     </Switch>
 
