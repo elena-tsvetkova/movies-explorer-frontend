@@ -5,18 +5,18 @@ import AboutProject from '../AboutProject/AboutProject.js';
 import Techs from '../Techs/Techs.js';
 import AboutMe from '../AboutMe/AboutMe';
 
-function Main () {
+function Main() {
 
     return (
         <main>
 
             <Promo/>
 
-            <AboutProject />
+            <AboutProject/>
 
-            <Techs />
+            <Techs/>
 
-            <AboutMe />
+            <AboutMe/>
 
         </main>
     );
