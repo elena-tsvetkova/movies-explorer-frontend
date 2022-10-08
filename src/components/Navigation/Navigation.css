@@ -69,7 +69,7 @@
     font-size: 14px;
     line-height: 18px;
     text-align: right;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 @media screen and (max-width: 768px) {
@@ -84,7 +84,8 @@
 }
 
 .navigation__link:hover {
-    color: #4285F4;
+    font-weight: 500;
+
 }
 
 .navigation__link:first-child{
@@ -98,7 +99,7 @@
 
     .navigation__link:hover {
         color: black;
-        border-bottom: 1px solid white;
+        border-bottom: 2px solid black;
     }
 }
 
@@ -122,26 +123,30 @@
     }
 }
 
+.navigation__close:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
 .navigation__account {
     width: 100px;
     height: 32px;
     margin-left: 49px;
-    border-radius: 10px;
     text-decoration: none;
-    background-color: inherit;
     border: none;
     padding: 0;
     display: flex;
     justify-content: space-between;
     align-items:center;
     cursor: pointer;
-    box-shadow: 0 0 10px 5px rgba(221, 221, 221, 0.4);
+    background: #FFFFFF;
+    box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.08);
+    border-radius: 40px;
 }
 
 .navigation__account:hover {
-    border: 0.1px solid #3DDC84;
-    width: 100px;
-    height: 30px;
+    background: #F8F8F8;
+    opacity: 0.8;
 }
 
 @media screen and (max-width: 768px) {
@@ -169,8 +174,8 @@
     padding-top: 6px;
     width: 22px;
     height: 20px;
-    border-radius: 6px;
-    background-color: white;
+    background: #F9F9F9;
+    border-radius: 50px;
 }
 
 .navigation__account-image {
@@ -178,6 +183,7 @@
     height: 10px;
     object-fit: cover;
     margin-top: 8px;
+    margin-left: 5px;
 }
 
 

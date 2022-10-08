@@ -12,13 +12,13 @@ function Movies () {
 
             <SearchForm />
 
-            {/*<Preloader />*/}
+            <Preloader />
 
             {/*<MoviesCardList className={'moviesCard__button'}/>*/}
 
-            <section className='movies__moreMovies'>
-                <button className='movies__moreMovies-button' type='button'>Ещё</button>
-            </section>
+            {/*<section className='movies__moreMovies'>*/}
+            {/*    <button className='movies__moreMovies-button' type='button'>Ещё</button>*/}
+            {/*</section>*/}
 
         </section>
     );
