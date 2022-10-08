@@ -7,17 +7,22 @@ const card = [
      {
        description: '33 слова о дизайне',
        image: movieDisayn,
-       duration: '1ч42м'
+       duration: '1ч45м'
      },
      {
         description: '33 слова о дизайне',
         image: movieDisayn,
-        duration: '1ч42м'
+        duration: '1ч52м'
      },
       {
         description: '33 слова о дизайне',
         image: movieDisayn,
-        duration: '1ч42м'
+        duration: '1ч32м'
+      },
+      {
+        description: '33 слова о дизайне',
+        image: movieDisayn,
+        duration: '1ч46м'
       },
       {
         description: '33 слова о дизайне',
@@ -32,17 +37,12 @@ const card = [
       {
         description: '33 слова о дизайне',
         image: movieDisayn,
-        duration: '1ч42м'
+        duration: '1ч50м'
       },
       {
         description: '33 слова о дизайне',
         image: movieDisayn,
-        duration: '1ч42м'
-      },
-      {
-        description: '33 слова о дизайне',
-        image: movieDisayn,
-        duration: '1ч42м'
+        duration: '1ч25м'
       },
       {
         description: '33 слова о дизайне',

@@ -16,9 +16,9 @@ function Movies () {
 
             <MoviesCardList className={'moviesCard__button'}/>
 
-            {/*<section className='movies__moreMovies'>*/}
-            {/*    <button className='movies__moreMovies-button' type='button'>Ещё</button>*/}
-            {/*</section>*/}
+            <section className='movies__add'>
+                <button className='movies__add-button' type='button'>Ещё</button>
+            </section>
 
         </section>
     );
