@@ -60,6 +60,11 @@ function App() {
                         <SavedMovies/>
                         <Footer/>
                     </Route>
+
+                    <Route path='/signup'>
+                        <Register/>
+                    </Route>
+
                     <Route exact={true} path='/profile'>
 
                         <Header className='header'>
@@ -72,6 +77,14 @@ function App() {
 
                         <Profile/>
                     </Route>
+
+                    {/*<Route path='/signin'>*/}
+                    {/*    <Login/>*/}
+                    {/*</Route>*/}
+
+                    {/*<Route exact={true} path='*'>*/}
+                    {/*    <NotFound/>*/}
+                    {/*</Route>*/}
 
                 </Switch>
 
