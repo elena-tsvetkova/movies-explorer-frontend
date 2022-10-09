@@ -1,0 +1,106 @@
+.moviesCard {
+    background-color: #FDFDFD;
+    width: 270px;
+    box-shadow: 0 16px 24px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+@media screen  and (max-width: 768px) {
+    .moviesCard{
+        width: 339px;
+    }
+}
+
+@media screen  and (max-width: 540px) {
+    .moviesCard{
+        width: 300px;
+    }
+}
+
+.moviesCard__image {
+    width: 270px;
+    height: 151px;
+    border-radius: 10px 10px 0 0;
+    margin-bottom: 14px;
+    object-fit: cover;
+
+}
+
+@media screen  and (max-width: 768px) {
+    .moviesCard__image{
+        width: 339px;
+        height: 190px;
+    }
+}
+
+@media screen  and (max-width: 540px) {
+    .moviesCard__image{
+        width: 300px;
+        height: 168px;
+    }
+}
+
+.moviesCards__information {
+    padding-left: 12px;
+}
+
+.moviesCard__title {
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.moviesCard__time {
+    font-size: 11px;
+    line-height: 13px;
+    align-items: center;
+    color: #A0A0A0;
+    margin: 0;
+    padding: 10px 0 14px;
+}
+
+.moviesCard__button {
+    width: 16px;
+    height: 16px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border: 1px solid white;
+    background-color: #FDFDFD;
+    border-radius: 50%;
+    margin-right: 12px;
+    cursor: pointer;
+
+}
+
+
+.moviesCard__button:focus {
+    width: 16px;
+    height: 16px;
+    background-color: #2BE080;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.09);
+    cursor: pointer;
+    border: 1px solid white;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.moviesCard__deleteButton {
+    width: 16px;
+    height: 16px;
+    background-color: inherit;
+    background: url('../../images/close-film.svg') no-repeat;
+    border: none;
+    margin-right: 8px;
+    margin-top: 5px;
+    cursor: pointer;
+
+}
+
+.moviesCard__deleteButton:hover {
+    cursor: pointer;
+    opacity: 0.7;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}

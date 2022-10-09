@@ -1,0 +1,140 @@
+.technology {
+    padding: 100px 70px;
+    background-color: #F5F5F5;
+}
+
+@media screen and (max-width: 768px) {
+    .technology {
+        padding: 90px 50px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .technology {
+        background-color: #FFFFFF;
+        padding: 63px 18px 77px;
+    }
+}
+
+.technology__subtitle {
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 27px;
+    margin-top: 0;
+    margin-bottom: 23px;
+}
+
+@media screen and (max-width: 320px) {
+    .technology__subtitle {
+        font-size: 18px;
+        line-height: 25px;
+    }
+}
+
+.technology__line {
+    color: #000000;
+}
+
+.technology__title {
+    max-width: 600px;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 58px;
+    text-align: center;
+    margin: 90px auto 26px;
+}
+
+@media screen and (max-width: 768px) {
+    .technology__title {
+        margin: 80px auto 22px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .technology__title {
+        width: 292px;
+        font-size: 27px;
+        line-height: 36px;
+        margin: 60px auto 24px;
+    }
+}
+
+.technology__text {
+    max-width: 460px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    margin: 0 auto 100px;
+}
+
+@media screen and (max-width: 768px) {
+    .technology__text {
+        font-size: 12px;
+        line-height: 18px;
+        margin: 0 auto 83px;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .technology__text {
+        min-width: 292px;
+        font-size: 9px;
+        margin: 0 auto 50px;
+    }
+}
+
+.technology__cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    gap: 10px;
+
+}
+
+@media screen and (max-width: 768px) {
+    .technology__cards {
+        margin: 0 auto;
+        justify-content: flex-start;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .technology__cards {
+        margin: 0 45px 0 55px;
+    }
+}
+
+@media screen and (max-width: 378px) {
+    .technology__cards {
+        margin: 0 45px 0 40px;
+    }
+}
+
+.technology__card {
+    width: 90px;
+    height: 60px;
+    background-color: #E8E8E8;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .technology__card {
+        width: 84px;
+        height: 57px;
+    }
+}
+
+.technology__card-text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;;
+    text-align: center;
+    margin: 21px auto;
+}
+
+@media screen and (max-width: 768px) {
+    .technology__card-text {
+        font-size: 12px;
+    }
+}
