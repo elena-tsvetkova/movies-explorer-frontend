@@ -75,6 +75,9 @@
 }
 
 .searchForm__border {
+    background-color: #E8E8E8;
     color: #E8E8E8;
+    border: none;
+    height: 1px;
     margin: 0;
 }
