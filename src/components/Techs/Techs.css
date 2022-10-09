@@ -9,7 +9,7 @@
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 450px) {
     .technology {
         background-color: #FFFFFF;
         padding: 63px 18px 77px;
@@ -102,6 +102,12 @@
 @media screen and (max-width: 540px) {
     .technology__cards {
         margin: 0 45px 0 55px;
+    }
+}
+
+@media screen and (max-width: 378px) {
+    .technology__cards {
+        margin: 0 45px 0 40px;
     }
 }
 

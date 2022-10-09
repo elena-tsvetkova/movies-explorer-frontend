@@ -83,7 +83,7 @@ function App() {
                         <Login/>
                     </Route>
 
-                    <Route exact={true} path='#'>
+                    <Route exact={true} path='*'>
                         <Error/>
                     </Route>
 

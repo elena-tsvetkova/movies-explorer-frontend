@@ -12,7 +12,7 @@ function MoviesCard (props) {
                 <p className='moviesCard__time'>{props.duration}</p>
             </div>
 
-            <button className= {props.className} type='submit'></button>
+            <button className= {props.className} type='button'></button>
 
         </li>
     );
