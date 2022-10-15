@@ -123,6 +123,19 @@
     text-align: center;
 }
 
+.profile__form-button_disabled {
+    opacity: 0.2;
+    background: inherit;
+    font-size: 13px;
+    font-weight: normal;
+    border: none;
+    padding: 0;
+    margin: 203px auto 16px;
+    cursor: pointer;
+    width: 410px;
+    text-align: center;
+}
+
 @media screen and (max-width: 768px) {
     .profile__form-button {
         margin-top: 190px;
