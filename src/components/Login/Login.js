@@ -30,10 +30,9 @@ function Login ({onSubmit}) {
                 <label className = 'information__form-label' htmlFor='password'> Пароль </label>
                 <input className='information__form-input' type='password' required name = 'password' id='password'  {...register('password', {required: true})}/>
                 <span className='information__form-input-error'>{errors.password?.type === "required" && "Пожалуйста, заполните поле"}</span>
+                <button className={'information__button login__button' +  (!isValid?' form__button_disabled':'')} disabled={!isValid} type='submit'>Войти</button>
 
             </form>
-                            <button className={'information__button login__button' +  (!isValid?' form__button_disabled':'')} disabled={!isValid} type='submit'>Войти</button>
-
 
             <p className="information__text">Ещё не зарегистрированы?
                 <Link to='signup' className="information__link">Регистрация</Link>

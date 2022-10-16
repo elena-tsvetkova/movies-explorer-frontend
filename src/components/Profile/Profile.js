@@ -1,17 +1,23 @@
 import React, {useContext} from 'react';
 import './Profile.css';
 import { useForm} from 'react-hook-form';
+import {UserContext} from '../../UserContext/UserContext.js'
+
 
 function Profile(props) {
-    const CurrentUserContext = React.createContext();
-    const { register, formState: {errors, isValid}, handleSubmit } = useForm({mode: 'onChange'});
+     const { register, formState: {errors, isValid}, handleSubmit } = useForm({mode: 'onChange'});
 
-    const user = useContext(CurrentUserContext);
-     function submit (data) {
-        props.onUpdateUser ({
-            name: data.name,
-            email: data.email,
-        });
+    const user = useContext(UserContext);
+
+    function submit (data) {
+        if (data.name !== user.name || data.email !== user.email) {
+            props.onUpdateUser ({
+                name: data.name,
+                email: data.email,
+            });
+        } else {
+            return !isValid
+        }
     }
     return (
         <section className="profile">

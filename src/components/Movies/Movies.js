@@ -5,12 +5,16 @@ import Preloader from '../Preloader/Preloader';
 import SearchForm from '../SearchForm/SearchForm';
 
 
-function Movies () {
+function Movies ({movieCards, searchMovie, message, movies, isLoad, onShort, isShort, isSavedMovie, handleAction}) {
 
     return (
         <section>
 
-            <SearchForm />
+            <SearchForm searchMovie = {searchMovie}
+                movies={movies}
+                onShort = {onShort}
+                isShort = {isShort}
+                movieCards={movieCards}/>
 
             <Preloader />
 

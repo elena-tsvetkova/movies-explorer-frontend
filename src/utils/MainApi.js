@@ -50,7 +50,6 @@ class MainApi {
     }
 
     updateUser (data) {
-        console.log(data);
         return fetch (`${this.baseurl}/users/me`, {
             method: 'PATCH',
             headers: this.headers,

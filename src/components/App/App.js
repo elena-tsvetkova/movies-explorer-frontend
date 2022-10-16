@@ -101,21 +101,21 @@ function App() {
         <UserContext.Provider value={currentUser}>
             <div className="page">
                 <div className="page__content">
-
-                    <Switch>
-                        <Route exact path='/'>
-                            <Header className=" header header-home"
+                       <Header className=" header header-home"
                                     loggedIn={loggedIn}
                                     isOpen={isNavigationOpen}
                                     onClose={onClose}
                                     onClick={setIsNavigationOpen}>
 
                             </Header>
+
+                    <Switch>
+                        <Route exact path='/'>
+
                             <Main loggedIn={loggedIn}
                                   isOpen={isNavigationOpen}
                                   onClose={onClose}
                                   onClick={setIsNavigationOpen}/>
-                            {/*<Footer/>*/}
                         </Route>
                         {/*<Route path='/movies'>*/}
 

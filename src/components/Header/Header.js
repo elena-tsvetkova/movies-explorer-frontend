@@ -9,7 +9,6 @@ function Header({loggedIn, isOpen, onClick, onClose}) {
     const location = useLocation();
 
     return (
-        // <header className={props.className}>
         <header
             className={'header' + (location.pathname === '/' ? ' header-home' : '') + (location.pathname === '/signin' ? ' header_none' : '') + (location.pathname === '/signup' ? ' header_none' : '')}>
             <Link to='/'>
