@@ -29,3 +29,12 @@
         width: 240px;
     }
 }
+
+.movies__message {
+    text-align: center;
+    color: black;
+}
+
+.movies__container {
+    min-height: calc(100vh - 352px);
+}

@@ -7,6 +7,7 @@ class MainApi {
 
     handleResponse (res)  {
         if (res.ok) {
+            console.log('res', res)
             return res.json();
           }
         return Promise.reject(res.status);

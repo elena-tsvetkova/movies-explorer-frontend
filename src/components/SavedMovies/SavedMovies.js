@@ -1,15 +1,34 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import MoviesCardList from '../MoviesCardList/MoviesCardList.js';
 import SearchForm from '../SearchForm/SearchForm.js';
 
-function SavedMovies () {
+function SavedMovies ({movieCards, onDeleteMovie, searchMovie,
+                       onShort, isShort, getSavedMovies, loggedIn,
+                       searchedMovie, isSearched, message, onSearched, onSetMessage}) {
+    let isSearch = isSearched;
+
+    useEffect(() => {
+        if (loggedIn) {
+            onSearched(false);
+            onSetMessage('')
+            getSavedMovies()
+        }
+    }, [loggedIn])
+
     return (
         <section>
+            <div className='movies__container'>
+                <SearchForm searchMovie={searchMovie}
+                            movies={movieCards}
+                            onShort={onShort}
+                            isShort={isShort}/>
 
-            <SearchForm />
+                <p className='movies__message'> {message}</p>
 
-            <MoviesCardList  className='moviesCard__deleteButton'/>
+                {(!isSearch) ? (<MoviesCardList movieCards={movieCards} onDeleteMovie={onDeleteMovie}/>)
+                    : (<MoviesCardList movieCards={searchedMovie} onDeleteMovie={onDeleteMovie}/>)}
 
+            </div>
         </section>
     );
 }

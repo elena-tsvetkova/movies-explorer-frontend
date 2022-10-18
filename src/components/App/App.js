@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Route, Switch, Redirect, useHistory, useLocation} from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Redirect, Route, Switch, useHistory, useLocation} from 'react-router-dom';
 import './App.css';
 import Main from '../Main/Main.js';
 import Header from "../Header/Header";
@@ -9,30 +9,29 @@ import SavedMovies from '../SavedMovies/SavedMovies.js';
 import Profile from '../Profile/Profile.js';
 import Register from '../Register/Register.js';
 import Login from '../Login/Login.js';
-import Navigation from "../Navigation/Navigation";
 import Error from "../error/error.js";
 import moviesApi from '../../utils/MoviesApi.js'
 import mainApi from '../../utils/MainApi.js';
 import * as auth from '../../utils/AuthApi.js';
-import {getUserInfo} from "../../utils/AuthApi.js";
 import {UserContext} from '../../UserContext/UserContext.js';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute.js';
 
 function App() {
     const history = useHistory();
     const location = useLocation();
+    const Time = 40;
 
-    const [isNavigationOpen, setIsNavigationOpen] = useState(false);
-    const [currentUser, setCurrentUser] = useState('');
-    const [errorMessage, setErrorMessage] = useState(false);
-    // const location = useLocation();
+    const [thisUser, setThisUser] = useState('');
     const [movies, setMovies] = useState([]);
+    const [message, setMessage] = useState('');
+    const [messageOfSearch, setMessageOfSearch] = useState('');
     const [movieCards, setMovieCards] = useState([]);
+    const [errorMessage, setErrorMessage] = useState(false);
     const [savedMoviesCard, setSavedMovieCards] = useState([]);
+    const [isNavigationOpen, setIsNavigationOpen] = useState(false);
     const [loggedIn, setLoggedIn] = useState(false);
     const [isLoad, setIsLoad] = useState(false);
     const [isShort, setIsShort] = useState(false);
-    const [message, setMessage] = useState('');
     const [searchedSavedMoviesCard, setSearchedSavedMovieCards] = useState([]);
     const [isSearched, setIsSearched] = useState(false);
 
@@ -45,7 +44,18 @@ function App() {
         mainApi.getUserInfo(token)
             .then((data) => {
                 setLoggedIn(true);
-                setCurrentUser(data);
+                setThisUser(data);
+                mainApi.getToken(token);
+                history.push(location.pathname);
+            })
+            .catch((err) => console.log(err));
+    }
+
+    function getUserInfo(token) {
+        auth.getUserInfo(token)
+            .then((data) => {
+                setLoggedIn(true);
+                setThisUser(data);
                 mainApi.getToken(token);
                 history.push(location.pathname);
             })
@@ -78,12 +88,174 @@ function App() {
     function onUpdateUser(data) {
         mainApi.updateUser(data)
             .then((userStats) => {
-                setCurrentUser(userStats);
+                setThisUser(userStats);
                 setMessage('Данные успешно обновлены')
             })
             .catch((err) => {
                 console.log(err);
                 setMessage('Произошла ошибка при попытке обновить данные. Попробуйте позже')
+            })
+    }
+
+    function tokenCheck() {
+        if (localStorage.getItem('token')) {
+            const token = localStorage.getItem('token');
+            if (token) {
+                getUserInfo(token);
+            }
+        }
+    }
+
+    useEffect(() => {
+        tokenCheck()
+    }, []);
+
+    useEffect(() => {
+        if (loggedIn) {
+            moviesApi.getCards()
+                .then((data) => {
+                    localStorage.setItem('movies', JSON.stringify(data));
+                    setMovies(JSON.parse(localStorage.getItem('movies')))
+                })
+                .catch((err) => {
+                    console.log(err);
+                    setMessageOfSearch('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
+                })
+
+            getSavedMovies()
+            if (localStorage.getItem('movieCards')) {
+                const loadMovies = JSON.parse(localStorage.getItem('movieCards'));
+                setMovieCards(loadMovies.map((movie) => ({
+                    movieId: movie.id,
+                    country: movie.country,
+                    description: movie.description,
+                    nameEN: movie.nameEN,
+                    nameRU: movie.nameRU,
+                    year: movie.year,
+                    duration: movie.duration,
+                    trailerLink: movie.trailerLink,
+                    director: movie.director,
+                    image: `https://api.nomoreparties.co/${movie.image.url}`,
+                    thumbnail: `https://api.nomoreparties.co/${movie.image.url}`
+                })));
+            }
+        }
+    }, [loggedIn]);
+
+    function searchMovie(text, movies) {
+        const moviesFilter = movies.filter((item) =>
+            (item.nameRU.toLowerCase().includes(text.toLowerCase()))
+            && (isShort === true ? item.duration <= Time : ' '));
+        if (location.pathname === '/movies') {
+            setMessageOfSearch('')
+            setIsLoad(true);
+            setTimeout(() => {
+                setIsLoad(false);
+                console.log(moviesFilter.length)
+                if (moviesFilter.length === 0) {
+                    setMessageOfSearch('Ничего не найдено')
+                } else {
+                    setMessageOfSearch('')
+                }
+                setMovieCards(
+                    moviesFilter.map((movie) => ({
+                        movieId: movie.id,
+                        country: movie.country,
+                        description: movie.description,
+                        nameEN: movie.nameEN,
+                        nameRU: movie.nameRU,
+                        year: movie.year,
+                        duration: movie.duration,
+                        trailerLink: movie.trailerLink,
+                        director: movie.director,
+                        image: `https://api.nomoreparties.co/${movie.image.url}`,
+                        thumbnail: `https://api.nomoreparties.co/${movie.image.url}`
+                    }))
+                )
+            }, 2000)
+
+            localStorage.setItem('movieCards', JSON.stringify(moviesFilter))
+
+        } else {
+            setIsSearched(true);
+            if (moviesFilter.length === 0) {
+                setMessageOfSearch('Ничего не найдено')
+            } else {
+                setMessageOfSearch('')
+            }
+            setSearchedSavedMovieCards(moviesFilter)
+        }
+    }
+
+    function isSavedMovie(data) {
+        return savedMoviesCard.some((item) => {
+            if (item.movieId === data.movieId) {
+                return item;
+            }
+        })
+    }
+
+    function handleAction(data) {
+        if (isSavedMovie(data) === false) {
+            saveMovies(data)
+        } else {
+            deleteSavedMovie(data)
+        }
+    }
+
+    function saveMovies(data) {
+        mainApi.createMovies(data)
+            .then((data) => {
+                getSavedMovies([data, ...savedMoviesCard])
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
+    function deleteSavedMovie(data) {
+        savedMoviesCard.forEach((item) => {
+            if (item.movieId === data.movieId) {
+                onDeleteMovie(item);
+            }
+        })
+    }
+
+    function getSavedMovies() {
+        mainApi.getMovies()
+            .then((data) => {
+                console.log('data', data)
+                setSavedMovieCards(
+                    data.map((savedMovie) => ({
+                            id: savedMovie._id,
+                            movieId: savedMovie.movieId,
+                            country: savedMovie.country,
+                            image: savedMovie.image,
+                            nameEN: savedMovie.nameEN,
+                            nameRU: savedMovie.nameRU,
+                            year: savedMovie.year,
+                            description: savedMovie.description,
+                            duration: savedMovie.duration,
+                            trailerLink: savedMovie.trailerLink,
+                            director: savedMovie.director,
+                            thumbnail: savedMovie.thumbnail
+                        })
+                    )
+                )
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
+    function onDeleteMovie(data) {
+        mainApi.deleteMovies(data, data.id)
+            .then(() => {
+                const result = savedMoviesCard.filter(item => item.id !== (data.id));
+                setSavedMovieCards(result);
+            })
+            .catch((err) => {
+                console.log(err);
             })
     }
 
@@ -93,21 +265,22 @@ function App() {
         localStorage.removeItem('movies')
         localStorage.removeItem('movieCards')
         localStorage.removeItem('isShort')
+        setMovieCards([]);
+        setSearchedSavedMovieCards([]);
         setLoggedIn(false);
         history.push('/')
     }
 
     return (
-        <UserContext.Provider value={currentUser}>
+        <UserContext.Provider value={thisUser}>
             <div className="page">
                 <div className="page__content">
-                       <Header className=" header header-home"
-                                    loggedIn={loggedIn}
-                                    isOpen={isNavigationOpen}
-                                    onClose={onClose}
-                                    onClick={setIsNavigationOpen}>
-
-                            </Header>
+                    <Header className=" header header-home"
+                            loggedIn={loggedIn}
+                            isOpen={isNavigationOpen}
+                            onClose={onClose}
+                            onClick={setIsNavigationOpen}>
+                    </Header>
 
                     <Switch>
                         <Route exact path='/'>
@@ -117,20 +290,7 @@ function App() {
                                   onClose={onClose}
                                   onClick={setIsNavigationOpen}/>
                         </Route>
-                        {/*<Route path='/movies'>*/}
 
-                        {/*    <Header className='header'>*/}
-                        {/*        <Navigation*/}
-                        {/*            isOpen={isNavigationOpen}*/}
-                        {/*            onClose={onClose}/>*/}
-                        {/*        <button className='header__burger' type='button'*/}
-                        {/*                onClick={() => setIsNavigationOpen(true)}/>*/}
-                        {/*    </Header>*/}
-
-                        {/*    <Movies/>*/}
-
-                        {/*    <Footer/>*/}
-                        {/*</Route>*/}
                         <ProtectedRoute path='/movies'
                                         loggedIn={loggedIn}
                                         component={Movies}
@@ -138,70 +298,40 @@ function App() {
                                         isOpen={isNavigationOpen}
                                         onClose={onClose}
                                         onClick={setIsNavigationOpen}
-                            // searchMovie = {searchMovie}
-                            // isSavedMovie = {isSavedMovie}
+                                        searchMovie={searchMovie}
+                                        isSavedMovie={isSavedMovie}
+                                        handleAction={handleAction}
                                         movies={movies}
                                         isLoad={isLoad}
                                         onShort={setIsShort}
                                         isShort={isShort}
-                            // handleAction={handleAction}
                                         message={message}>
-
                         </ProtectedRoute>
 
-                        {/*<Route exact={true} path='/saved_movies'>*/}
-
-                        {/*    <Header className='header'>*/}
-                        {/*        <Navigation*/}
-                        {/*            isOpen={isNavigationOpen}*/}
-                        {/*            onClose={onClose}/>*/}
-                        {/*        <button className='header__burger' onClick={() => setIsNavigationOpen(true)}*/}
-                        {/*                type='button'/>*/}
-                        {/*    </Header>*/}
-                        {/*    <SavedMovies/>*/}
-                        {/*    <Footer/>*/}
-                        {/*</Route>*/}
                         <ProtectedRoute path='/saved_movies'
-                            // getSavedMovies = {getSavedMovies}
+                                        getSavedMovies={getSavedMovies}
                                         loggedIn={loggedIn}
                                         component={SavedMovies}
+                                        movieCards={savedMoviesCard}
                                         isOpen={isNavigationOpen}
                                         onClose={onClose}
                                         onClick={setIsNavigationOpen}
-                                        movieCards={savedMoviesCard}
                                         searchedMovie={searchedSavedMoviesCard}
-                            // onDeleteMovie = {onDeleteMovie}
-                            // searchMovie = {searchMovie}
+                                        onDeleteMovie={onDeleteMovie}
+                                        searchMovie={searchMovie}
                                         onShort={setIsShort}
                                         isShort={isShort}
-                                        isSearched={isSearched}>
-
+                                        isSearched={isSearched}
+                                        onSearched={setIsSearched}
+                                        message={messageOfSearch}
+                                        onSetMessage={setMessageOfSearch}>
                         </ProtectedRoute>
 
-                        {/*<Route path='/signup'>*/}
-                        {/*    <Register*/}
-                        {/*        onSubmit={onRegister}*/}
-                        {/*        isErrorMessage={errorMessage}/>*/}
-                        {/*</Route>*/}
                         <Route path='/signup'>
                             {loggedIn ? <Redirect to='/movies'/> :
-                                <Register onSubmit={onRegister}
-                                          isErrorMessage={errorMessage}/>}
+                                <Register onSubmit={onRegister} isErrorMessage={errorMessage}/>}
                         </Route>
 
-                        {/*<Route exact={true} path='/profile'>*/}
-
-                        {/*    <Header className='header'>*/}
-                        {/*        <Navigation*/}
-                        {/*            isOpen={isNavigationOpen}*/}
-                        {/*            onClose={onClose}/>*/}
-
-                        {/*        <button className='header__burger' type='button'*/}
-                        {/*                onClick={() => setIsNavigationOpen(true)}/>*/}
-                        {/*    </Header>*/}
-
-                        {/*    <Profile/>*/}
-                        {/*</Route>*/}
                         <ProtectedRoute path='/profile'
                                         loggedIn={loggedIn}
                                         component={Profile}
@@ -211,13 +341,7 @@ function App() {
                                         onLogAut={onLogAut}
                                         onUpdateUser={onUpdateUser}
                                         message={message}>
-
                         </ProtectedRoute>
-
-                        {/*<Route path='/signin'>*/}
-                        {/*    <Login/>*/}
-                        {/*</Route>*/}
-
 
                         <Route path='/signin'>
                             {loggedIn ? <Redirect to='/movies'/> : <Login onSubmit={onAuthorize}/>}

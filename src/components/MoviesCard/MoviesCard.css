@@ -48,10 +48,29 @@
 }
 
 .moviesCard__title {
+    max-width: 220px;
+    color: #A0A0A0;
     font-size: 13px;
     line-height: 16px;
     font-weight: 500;
     margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media screen  and (max-width: 768px) {
+    .moviesCard__title {
+            max-width: 280px;
+
+    }
+}
+
+@media screen  and (max-width: 540px) {
+    .moviesCard__title {
+            max-width: 228px;
+
+    }
 }
 
 .moviesCard__time {
@@ -76,7 +95,7 @@
 }
 
 
-.moviesCard__button:focus {
+.moviesCard__button_like {
     width: 16px;
     height: 16px;
     background-color: #2BE080;

@@ -39,3 +39,19 @@ export const authorize = (email, password) => {
         return data;
     })
 }
+
+export const getUserInfo = (token) => {
+    return fetch (`${BASE_URL}/users/me`, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type' : 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then ((response) => {
+        if (response.status === 200) {
+            return response.json ();
+        }
+    })
+}

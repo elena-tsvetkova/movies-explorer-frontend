@@ -44,12 +44,12 @@
     }
 }
 
-.profile__form-conteyner {
+.profile__form-container {
     max-width: 410px;
 }
 
 @media screen and (max-width: 450px) {
-    .profile__form-conteyner {
+    .profile__form-container {
         max-width: 260px;
     }
 }
