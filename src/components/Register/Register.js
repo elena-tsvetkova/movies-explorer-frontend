@@ -41,7 +41,7 @@ function Register ({onSubmit, isErrorMessage}) {
                 <input className='information__form-input' type='password' required name ='password' id='password' {...register('password', {required: true})}/>
                 <span className='information__form-input-error'>{errors.password?.type === "required" && "Пожалуйста, заполните поле"} </span>
 
-                <span className={'information__form-input-error' +  (isErrorMessage?'information__form-input-error':'')}>Во время регистрации произошла ошибка</span>
+                <span className={'information__form-input-error' +  (isErrorMessage?'information__form-input-error ':'')}>Во время регистрации произошла ошибка</span>
                 <button className={'information__button information__button-register' +  (!isValid?' form__button_disabled':'')} disabled={!isValid} type='submit'>Зарегистрироваться</button>
 
                 </form>

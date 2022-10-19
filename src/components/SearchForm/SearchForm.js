@@ -47,6 +47,7 @@ function SearchForm({searchMovie, movies, onShort, isShort}) {
                             movies={movies}
                             isShort={isShort}
                             text={newValue}/>
+
         </section>
     )
 }
