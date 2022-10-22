@@ -48,7 +48,10 @@ function App() {
                 mainApi.getToken(token);
                 history.push(location.pathname);
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                console.log(err)
+                checkUnauthorized(err)
+            });
     }
 
     function getUserInfo(token) {
@@ -59,18 +62,23 @@ function App() {
                 mainApi.getToken(token);
                 history.push(location.pathname);
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                checkUnauthorized(err)
+                console.log(err)
+            });
     }
 
     function onRegister(data) {
         auth.register(data.email, data.password, data.name)
             .then((res) => {
                 if (res) {
+                    setMessageOfSearch('')
                     onAuthorize(data);
                 }
             })
             .catch((err) => {
                 console.log(err);
+                checkUnauthorized(err)
                 setErrorMessage(true)
             })
     }
@@ -82,7 +90,10 @@ function App() {
                     getUser(data.token);
                 }
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                checkUnauthorized(err)
+                console.log(err)
+            })
     }
 
     function onUpdateUser(data) {
@@ -93,6 +104,7 @@ function App() {
             })
             .catch((err) => {
                 console.log(err);
+                checkUnauthorized(err)
                 setMessage('Произошла ошибка при попытке обновить данные. Попробуйте позже')
             })
     }
@@ -118,6 +130,7 @@ function App() {
                     setMovies(JSON.parse(localStorage.getItem('movies')))
                 })
                 .catch((err) => {
+                    checkUnauthorized(err)
                     console.log(err);
                     setMessageOfSearch('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
                 })
@@ -151,7 +164,6 @@ function App() {
             setIsLoad(true);
             setTimeout(() => {
                 setIsLoad(false);
-                console.log(moviesFilter.length)
                 if (moviesFilter.length === 0) {
                     setMessageOfSearch('Ничего не найдено')
                 } else {
@@ -209,6 +221,8 @@ function App() {
                 getSavedMovies([data, ...savedMoviesCard])
             })
             .catch((err) => {
+                checkUnauthorized(err)
+                setMessageOfSearch('Невозможно сохранить фильм')
                 console.log(err);
             })
     }
@@ -219,6 +233,12 @@ function App() {
                 onDeleteMovie(item);
             }
         })
+    }
+
+    function checkUnauthorized(err) {
+        if (err === 401){
+            onLogAut()
+        }
     }
 
     function getSavedMovies() {
@@ -244,6 +264,7 @@ function App() {
                 )
             })
             .catch((err) => {
+                checkUnauthorized(err)
                 console.log(err);
             })
     }
@@ -255,6 +276,7 @@ function App() {
                 setSavedMovieCards(result);
             })
             .catch((err) => {
+                checkUnauthorized(err)
                 console.log(err);
             })
     }
@@ -305,7 +327,7 @@ function App() {
                                         isLoad={isLoad}
                                         onShort={setIsShort}
                                         isShort={isShort}
-                                        message={message}>
+                                        message={messageOfSearch}>
                         </ProtectedRoute>
 
                         <ProtectedRoute path='/saved_movies'
@@ -340,7 +362,9 @@ function App() {
                                         onClick={setIsNavigationOpen}
                                         onLogAut={onLogAut}
                                         onUpdateUser={onUpdateUser}
-                                        message={message}>
+                                        message={message}
+                                        onSetMessage={setMessage}
+                        >
                         </ProtectedRoute>
 
                         <Route path='/signin'>

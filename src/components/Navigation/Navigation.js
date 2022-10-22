@@ -8,9 +8,9 @@ function Navigation({isOpen, onClose}) {
         <section className={'navigation' + (isOpen ? ' navigation_visible' : '')}>
             <div className="navigation__container">
                 <nav className="navigation__links">
-                    <Link to='/' className='navigation__link'>Главная</Link>
-                    <Link to='/movies' className='navigation__link'>Фильмы</Link>
-                    <Link to='saved_movies' className='navigation__link navigation__link_normal'>Сохраненные фильмы</Link>
+                    <Link to='/' className='navigation__link' onClick={onClose}>Главная</Link>
+                    <Link to='/movies' className='navigation__link' onClick={onClose}>Фильмы</Link>
+                    <Link to='saved_movies' className='navigation__link navigation__link_normal' onClick={onClose}>Сохраненные фильмы</Link>
                 </nav>
 
                 <Link className='navigation__account' to='/profile'>

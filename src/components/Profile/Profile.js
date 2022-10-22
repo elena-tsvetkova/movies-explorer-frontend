@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import './Profile.css';
 import {useForm} from 'react-hook-form';
 import {UserContext} from '../../UserContext/UserContext.js'
@@ -7,6 +7,10 @@ import {UserContext} from '../../UserContext/UserContext.js'
 function Profile(props) {
     const {register, formState: {errors, isValid}, handleSubmit} = useForm({mode: 'onChange'});
     const user = useContext(UserContext);
+
+    useEffect(() => {
+        props.onSetMessage('')
+    }, [])
 
     function submit(data) {
         if (data.name !== user.name || data.email !== user.email) {
@@ -56,6 +60,8 @@ function Profile(props) {
                     <span
                         className='profile__form-input-text'> {errors.email?.type === "required" && "Пожалуйста, заполните поле"}
                         {errors.email?.type === "pattern" && "Поле содержит недопустимые символы"}</span>
+
+                    <p className = 'profile__massage'> {props.message}</p>
 
                     <button disabled={!isValid}
                             className={'profile__form-button' + (!isValid ? ' profile__form-button_disabled' : '')}

@@ -1,4 +1,4 @@
-import {BASE_URL, getUserInfo} from "./AuthApi.js";
+import {BASE_URL} from "./AuthApi.js";
 
 class MainApi {
     constructor () {
@@ -7,7 +7,6 @@ class MainApi {
 
     handleResponse (res)  {
         if (res.ok) {
-            console.log('res', res)
             return res.json();
           }
         return Promise.reject(res.status);

@@ -6,7 +6,6 @@ import './Movies.css';
 
 
 function Movies({movieCards, searchMovie, message, movies, isLoad, onShort, isShort, isSavedMovie, handleAction}) {
-
     return (
         <section>
             <div className='movies__container'>

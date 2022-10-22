@@ -34,12 +34,24 @@
 }
 
 .information__form-input-error {
+    display: none;
+}
+
+.information__form-input-error_visible {
+    display: block;
     font-weight: 400;
     font-size: 10px;
     line-height: 12px;
     color: #EE3465;
 }
 
+.information__form-input-error-text {
+    display: block;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #EE3465;
+}
 
 .information__button {
     width: 396px;
