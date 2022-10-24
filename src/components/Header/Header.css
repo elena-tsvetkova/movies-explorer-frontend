@@ -5,6 +5,10 @@
     padding: 18px 70px;
 }
 
+.header_none {
+    display: none;
+}
+
 @media screen and (max-width: 768px) {
     .header {
         padding: 18px 30px;

@@ -8,18 +8,19 @@ function Portfolio() {
             <h3 className='portfolio__title'>Портфолио</h3>
             <nav>
                 <ul className='portfolio__links'>
-                    <li className = 'portfolio__link'>
-                        <a href='https://elena-tsvetkova.github.io/how-to-learn/' target='blank' className='portfolio__link-website'>
+                    <li className='portfolio__link'>
+                        <a href='https://elena-tsvetkova.github.io/how-to-learn/' target='blank'
+                           className='portfolio__link-website'>
                             <h2 className='portfolio__link-subtitle'>Статичный сайт</h2>
                             <img className='portfolio__link-arrow' src={arrow} alt='стрелка'/>
-                         </a>
+                        </a>
                     </li>
-
 
                     <hr className="portfolio__line"/>
 
-                    <li className = 'portfolio__link'>
-                        <a href='https://elena-tsvetkova.github.io/russian-travel/index.html' target='blank' className='portfolio__link-website'>
+                    <li className='portfolio__link'>
+                        <a href='https://elena-tsvetkova.github.io/russian-travel/index.html' target='blank'
+                           className='portfolio__link-website'>
                             <h2 className='portfolio__link-subtitle'>Адаптивный сайт</h2>
                             <img className='portfolio__link-arrow' src={arrow} alt='стрелка'/>
                         </a>
@@ -27,8 +28,9 @@ function Portfolio() {
 
                     <hr className="portfolio__line"/>
 
-                    <li className = 'portfolio__link'>
-                        <a href='https://elena-tsvetkova.github.io/react-mesto-auth/' target='blank' className='portfolio__link-website'>
+                    <li className='portfolio__link'>
+                        <a href='https://elena-tsvetkova.github.io/react-mesto-auth/' target='blank'
+                           className='portfolio__link-website'>
                             <h2 className='portfolio__link-subtitle'>Одностраничное приложение</h2>
                             <img className='portfolio__link-arrow' src={arrow} alt='стрелка'/>
                         </a>
